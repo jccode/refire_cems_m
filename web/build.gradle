@@ -1,0 +1,17 @@
+
+//apply plugin: 'war'
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    
+    compile('org.webjars:bootstrap:3.3.5')
+    compile('org.webjars:jquery:2.1.4')
+    compile('org.webjars:angularjs:1.4.7')
+
+    compile('org.springframework.boot:spring-boot-starter-tomcat')
+
+    compile project(':core')
+    compile project(':security')
+    compile project(':share')
+}

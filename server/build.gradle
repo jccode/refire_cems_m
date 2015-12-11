@@ -1,0 +1,45 @@
+
+apply plugin: 'war'
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+//    runtime project(':rest')
+//    runtime project(':web')
+}
+
+//task runserver(dependsOn: bootRun) >> {
+//    println "-------------- RUN SERVER ---------------"
+//    project.dependencies.add("runtime", project(":rest"))
+//    project.dependencies.add("runtime", project(":web"))
+//}
+//
+//task runApi(dependsOn: bootRun) >> {
+//    println "-------------- RUN API ---------------"
+//    project.dependencies.add("runtime", project(":rest"))
+//}
+
+task a {
+    println "-------------- Configurate A ---------------"
+    doFirst {
+        println "----------- First A ------------"
+    }
+    doLast {
+        println "----------- Last A ------------"
+    }
+}
+
+task b(dependsOn: a) {
+    println "-------------- Configurate B ---------------"
+    doFirst {
+        println "----------- First B ------------"
+    }
+    doLast {
+        println "----------- Last B ------------"
+    }
+}
+
+
+task showArgs << {
+    println "$word1 $word2"
+}

@@ -1,0 +1,10 @@
+
+//apply plugin: 'war'
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-tomcat')
+
+    compile project(':core')
+    compile project(':security')
+}

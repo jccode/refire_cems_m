@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="ngLoginApp">
+<head>
+    <title>Angular login page</title>
+    {{>head }}
+</head>
+<body>
+<div class="container" ng-controller="LoginController">
+    <div class="page-header">
+        <h1>Demo page</h1>
+    </div>
+    <div class="page-content">
+        <input type="text" id="username" name="username" placeholder="username" ng-model="user.username">
+        <input type="password" id="password" name="password" placeholder="password" ng-model="user.password">
+        <label><input type="checkbox" id="remember-me" name="remember-me" ng-model="user.remember_me"> Remember me</label>
+        <button class="btn btn-default" id="ajaxLogin" ng-click="login()">Ajax Login</button>
+        <button class="btn btn-default" id="ajaxLogout" ng-click="logout()">Ajax Logout</button>
+        <button class="btn btn-default" id="ajaxApiLogout" ng-click="apiLogin()">Ajax Api Login</button>
+    </div>
+    <p ng-bind="msg"></p>
+</div>
+{{>scripts}}
+<script type="application/javascript" src="/webjars/angularjs/1.4.7/angular.js"></script>
+<script type="application/javascript" src="/js/nglogin.js"></script>
+<script type="application/javascript" src="/js/lib/angular-base64.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+{{>head }}
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Dear {{user}}</h1>
+    </div>
+    <div class="page-content">
+        You are not authorized to access this page.
+        <form action="/logout" method="post">
+            <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">logout</button>
+        </form>
+    </div>
+</div>
+{{>scripts}}
+</body>
+</html>

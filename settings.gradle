@@ -1,0 +1,6 @@
+include 'core'
+include 'security'
+include 'share'
+include 'rest'
+include 'web'
+include 'server'

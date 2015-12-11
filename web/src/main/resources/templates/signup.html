@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign up</title>
+    {{>head }}
+</head>
+<body>
+<div class="container">
+
+    <form action="/signup" method="post" class="form-signin">
+        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+        <h2 class="form-signin-heading">Sign up</h2>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" class="form-control" placeholder="Age"/>
+        </div>
+
+        <div class="form-group">
+            <div class="radio">
+                <label >
+                    <input type="radio" name="gender" value="1"> 男
+                </label>
+            </div>
+            <div class="radio">
+                <label >
+                    <input type="radio" name="gender" value="2"> 女
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        </div>
+
+        {{#errors}}
+        {{field}}: {{defaultMessage}} <br>
+        {{/errors}}
+    </form>
+</div>
+{{>scripts}}
+</body>
+</html>
