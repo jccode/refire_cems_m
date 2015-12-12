@@ -8,38 +8,20 @@ dependencies {
 //    runtime project(':web')
 }
 
-//task runserver(dependsOn: bootRun) >> {
-//    println "-------------- RUN SERVER ---------------"
-//    project.dependencies.add("runtime", project(":rest"))
-//    project.dependencies.add("runtime", project(":web"))
-//}
-//
-//task runApi(dependsOn: bootRun) >> {
-//    println "-------------- RUN API ---------------"
-//    project.dependencies.add("runtime", project(":rest"))
-//}
-
-task a {
-    println "-------------- Configurate A ---------------"
-    doFirst {
-        println "----------- First A ------------"
+task webapp {
+    def added = false
+    if (project.hasProperty("app")) {
+        if (app.equalsIgnoreCase("api")) {
+            project.dependencies.add("runtime", project(":rest"))
+            added = true
+        } else if (app.equalsIgnoreCase("web")) {
+            project.dependencies.add("runtime", project(":web"))
+            added = true
+        }
     }
-    doLast {
-        println "----------- Last A ------------"
+    if (!added) {
+        project.dependencies.add("runtime", project(":rest"))
+        project.dependencies.add("runtime", project(":web"))
     }
 }
 
-task b(dependsOn: a) {
-    println "-------------- Configurate B ---------------"
-    doFirst {
-        println "----------- First B ------------"
-    }
-    doLast {
-        println "----------- Last B ------------"
-    }
-}
-
-
-task showArgs << {
-    println "$word1 $word2"
-}
