@@ -2,6 +2,7 @@ package com.hongdingltd.api;
 
 
 import com.hongdingltd.domain.User;
+import com.hongdingltd.hello.HelloService;
 import com.hongdingltd.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -53,4 +54,6 @@ public class ApiController {
             return "You failed to upload " + name + " because file was empty.";
         }
     }
+
+
 }

@@ -9,3 +9,4 @@ build/
 *~
 rebel.xml
 classes/
+*.rdb

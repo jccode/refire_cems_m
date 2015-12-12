@@ -1,5 +1,6 @@
 package com.hongdingltd.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class User implements Serializable {
     private Long id;
 
     private String username;
+    @JsonIgnore
     private String password;
     private Boolean enabled;
 
