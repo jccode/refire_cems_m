@@ -30,4 +30,5 @@ public class UserController {
     public User create(@RequestBody User user) {
         return repository.save(user);
     }
+
 }

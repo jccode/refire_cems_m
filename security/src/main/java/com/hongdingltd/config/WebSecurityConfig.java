@@ -44,8 +44,10 @@ public class WebSecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
+
             http.antMatcher("/api/**")
-                    .authorizeRequests().anyRequest().authenticated()
+                    .authorizeRequests()
+                    .anyRequest().authenticated()
                     .and().httpBasic()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
                     .and().csrf().disable()
@@ -81,7 +83,7 @@ public class WebSecurityConfig {
                     .logoutSuccessHandler(new LogoutSuccessHandler("/login?logout")).permitAll()
                     .and().exceptionHandling().accessDeniedPage("/access_denied")
                     .and().addFilterAfter(new AngularCsrfHeaderFilter(), CsrfFilter.class)
-                    ;
+                    .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);;
         }
 
         private CsrfTokenRepository csrfTokenRepository() {
