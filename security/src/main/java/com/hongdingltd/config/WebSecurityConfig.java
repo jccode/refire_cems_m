@@ -48,7 +48,8 @@ public class WebSecurityConfig {
                     .authorizeRequests().anyRequest().authenticated()
                     .and().httpBasic()
                     .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
-                    .and().csrf().disable();
+                    .and().csrf().disable()
+                    .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
         }
     }
 
@@ -80,7 +81,7 @@ public class WebSecurityConfig {
                     .logoutSuccessHandler(new LogoutSuccessHandler("/login?logout")).permitAll()
                     .and().exceptionHandling().accessDeniedPage("/access_denied")
                     .and().addFilterAfter(new AngularCsrfHeaderFilter(), CsrfFilter.class)
-                    .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
+                    ;
         }
 
         private CsrfTokenRepository csrfTokenRepository() {
