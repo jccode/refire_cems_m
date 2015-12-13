@@ -5,6 +5,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile("org.springframework.boot:spring-boot-starter-redis")
+    compile('org.springframework.session:spring-session:1.0.2.RELEASE')
 
     compile project(':core')
 }
