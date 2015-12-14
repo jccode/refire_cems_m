@@ -16,12 +16,13 @@ public class Authority implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String username;
+    private Long uid;
+
     private String authority;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
+    @JoinColumn(name = "uid", insertable = false, updatable = false)
     private User user;
 
     public Authority() {
@@ -35,12 +36,12 @@ public class Authority implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getUid() {
+        return uid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
     public String getAuthority() {
@@ -63,8 +64,9 @@ public class Authority implements Serializable {
     public String toString() {
         return "Authority{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", uid=" + uid +
                 ", authority='" + authority + '\'' +
+                ", user=" + user +
                 '}';
     }
 

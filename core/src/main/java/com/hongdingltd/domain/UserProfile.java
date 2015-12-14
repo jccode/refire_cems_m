@@ -16,10 +16,7 @@ public class UserProfile implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-//    private String username;
+    private Long uid;
 
     private String fullname;
 
@@ -29,34 +26,26 @@ public class UserProfile implements Serializable {
     private Integer age;
 
     @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username", insertable = true, updatable = true)
+    @JoinColumn(name = "uid", insertable = true, updatable = true)
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL) // fetch = FetchType.EAGER
     @JoinTable(name = "user_bind_bus",
-            joinColumns = @JoinColumn(name = "username", referencedColumnName = "username"),
-            inverseJoinColumns = @JoinColumn(name = "plateNumber", referencedColumnName = "plateNumber")
+            joinColumns = @JoinColumn(name = "uid", referencedColumnName = "uid"),
+            inverseJoinColumns = @JoinColumn(name = "bid", referencedColumnName = "bid")
     )
     private Set<Bus> buses;
 
     public UserProfile() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getUid() {
+        return uid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
-
-//    public String getUsername() {
-//        return user.getUsername();
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
 
     public String getFullname() {
         return fullname;
@@ -101,11 +90,12 @@ public class UserProfile implements Serializable {
     @Override
     public String toString() {
         return "UserProfile{" +
-                "id=" + id +
-//                ", username='" + username + '\'' +
+                "uid=" + uid +
                 ", fullname='" + fullname + '\'' +
                 ", gender=" + gender +
                 ", age=" + age +
+//                ", user=" + user +
+//                ", buses=" + buses +
                 '}';
     }
 }

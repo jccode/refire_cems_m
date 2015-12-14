@@ -11,8 +11,7 @@ import java.util.Set;
 public class Bus implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long bid;
 
     private String plateNumber;
 
@@ -26,12 +25,12 @@ public class Bus implements Serializable {
         this.plateNumber = plateNumber;
     }
 
-    public Long getId() {
-        return id;
+    public Long getBid() {
+        return bid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBid(Long bid) {
+        this.bid = bid;
     }
 
     public String getPlateNumber() {
@@ -53,7 +52,7 @@ public class Bus implements Serializable {
     @Override
     public String toString() {
         return "Bus{" +
-                "id=" + id +
+                "bid=" + bid +
                 ", plateNumber='" + plateNumber + '\'' +
                 '}';
     }

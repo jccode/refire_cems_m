@@ -36,8 +36,8 @@ public class UserRepositoryTest {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
-    @Autowired
-    private BusRepository busRepository;
+//    @Autowired
+//    private BusRepository busRepository;
 
     @Before
     public void setup() {
@@ -61,30 +61,42 @@ public class UserRepositoryTest {
         System.out.println(dbuser);
     }
 
+
     @Test
     public void saveUserWithAuthorities() {
         long authoritiesCount = authorityRepository.count();
-        System.out.println(authoritiesCount);
+        long userCount = userRepository.count();
         User user = new User();
         user.setUsername("tom");
+        User dbUser = userRepository.save(user);
+
+        System.out.println(authoritiesCount);
+        System.out.println(dbUser.getId() + " ; "+user.getId());
+        System.out.println(authorityRepository.findAll());
 
         Authority authority = new Authority();
         authority.setAuthority("ROLE_TEST");
-        authority.setUsername(user.getUsername());
+        authority.setUid(dbUser.getId());
         Set<Authority> authorities = Sets.newHashSet(authority);
 
         user.setAuthorities(authorities);
         userRepository.save(user);
-        assertEquals(authorityRepository.count(), authoritiesCount+1);
+        assertEquals(authorityRepository.count(), authoritiesCount + 1);
 
-        Authority dbAuthority = authorityRepository.findByUsername("tom");
+
+        System.out.println(authorityRepository.findAll());
+
+        Authority dbAuthority = authorityRepository.findByUid(dbUser.getId());
         System.out.println(dbAuthority.getUser());
         assertNotNull(dbAuthority);
 
-        // delete
+        // delete; orphanDelte=true
         userRepository.delete(user);
+//        authorityRepository.delete(dbAuthority);
         assertEquals(authorityRepository.count(), authoritiesCount);
+        assertEquals(userRepository.count(), userCount);
     }
+
 
     @Test
     public void userProfile() {
@@ -105,18 +117,20 @@ public class UserRepositoryTest {
         userProfileRepository.save(userProfile);
 
         assertEquals(userProfileRepository.count(), count+1);
+        System.out.println(userProfile.getUid());
 
-        UserProfile dbUserProfile = userProfileRepository.findByUserUsername(username);
-        System.out.println(dbUserProfile);
-        System.out.println(dbUserProfile.getUser());
-
-        User dbUser = userRepository.findByUsername(username);
-        System.out.println(dbUser);
-        System.out.println(dbUser.getProfile());
-
-        assertEquals(dbUserProfile.getUser().getId(), dbUser.getId());
+//        UserProfile dbUserProfile = userProfileRepository.findByUserUsername(username);
+//        System.out.println(dbUserProfile);
+//        System.out.println(dbUserProfile.getUser());
+//
+//        User dbUser = userRepository.findByUsername(username);
+//        System.out.println(dbUser);
+//        System.out.println(dbUser.getProfile());
+//
+//        assertEquals(dbUserProfile.getUser().getBid(), dbUser.getBid());
     }
 
+    /*
     @Test
     public void saveBus() {
         System.out.println("----------------- BUS ------------------");
@@ -171,4 +185,5 @@ public class UserRepositoryTest {
         Bus dbBus3_r = busRepository.save(dbBus3);
         assertEquals(dbBus3_r.getDrivers().size(), 2);
     }
+    */
 }

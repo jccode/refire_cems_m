@@ -28,7 +28,9 @@ public class User implements Serializable {
     private Date createdDate;
     private Date lastAccessed;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private String telphone;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private Set<Authority> authorities;
 
     @Transient
@@ -85,6 +87,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -110,6 +120,8 @@ public class User implements Serializable {
                 ", createdDate=" + createdDate +
                 ", lastAccessed=" + lastAccessed +
                 ", enabled=" + enabled +
+                ", telphone=" + telphone +
                 '}';
+
     }
 }
