@@ -67,4 +67,8 @@ public class Authority implements Serializable {
                 ", authority='" + authority + '\'' +
                 '}';
     }
+
+    public static enum Role {
+        USER, DRIVER, ADMIN
+    }
 }
