@@ -1,13 +1,10 @@
 package com.hongdingltd.repository;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.hongdingltd.RefireCemsApplication;
-import com.hongdingltd.core.domain.Authority;
-import com.hongdingltd.core.domain.User;
-import com.hongdingltd.core.repository.AuthorityRepository;
-import com.hongdingltd.core.repository.UserRepository;
+import com.hongdingltd.TestRepositoryConfig;
+import com.hongdingltd.domain.Authority;
 import com.hongdingltd.domain.Bus;
+import com.hongdingltd.domain.User;
 import com.hongdingltd.domain.UserProfile;
 import org.junit.After;
 import org.junit.Before;
@@ -18,20 +15,16 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by jcchen on 15-12-2.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = RefireCemsApplication.class)
-@WebAppConfiguration
+@SpringApplicationConfiguration(classes = TestRepositoryConfig.class)
+//@WebAppConfiguration
 public class UserRepositoryTest {
 
     @Autowired
@@ -165,8 +158,8 @@ public class UserRepositoryTest {
 
         UserProfile dbUp1 = userProfileRepository.findByUserUsername("X1");
         System.out.println(dbUp1.getUser());
-        System.out.println(dbUp1.getBuses());
-        assertEquals(dbUp1.getBuses().size(), 1);
+//        System.out.println(dbUp1.getBuses());
+//        assertEquals(dbUp1.getBuses().size(), 1);
 
         Bus dbBus3 = busRepository.findByPlateNumber("Z00000");
         System.out.println(dbBus3.getDrivers());

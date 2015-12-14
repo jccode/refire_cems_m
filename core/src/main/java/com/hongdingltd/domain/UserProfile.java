@@ -32,7 +32,7 @@ public class UserProfile implements Serializable {
     @JoinColumn(name = "username", referencedColumnName = "username", insertable = true, updatable = true)
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL) // fetch = FetchType.EAGER
     @JoinTable(name = "user_bind_bus",
             joinColumns = @JoinColumn(name = "username", referencedColumnName = "username"),
             inverseJoinColumns = @JoinColumn(name = "plateNumber", referencedColumnName = "plateNumber")
