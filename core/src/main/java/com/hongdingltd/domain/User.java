@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -100,7 +101,16 @@ public class User implements Serializable {
     }
 
     public void setAuthorities(Set<Authority> authorities) {
+//        if(this.authorities == null)
+//            this.authorities = authorities;
+//        else {
+//            this.authorities.retainAll(authorities);
+//            this.authorities.addAll(authorities);
+//        }
         this.authorities = authorities;
+
+//        this.authorities.clear();
+//        this.authorities.addAll(authorities);
     }
 
     @OneToOne(optional = false, mappedBy = "user", cascade = CascadeType.ALL)
@@ -124,4 +134,22 @@ public class User implements Serializable {
                 '}';
 
     }
+
+//    @Override
+//    public int hashCode() {
+//        return getId() != null ? getId().hashCode() : 0;
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if(this == o) return true;
+//        if(o == null || getClass() != o.getClass()) return false;
+//        User that = (User) o;
+//        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) {
+//            return false;
+//        }
+//        return true;
+//    }
+
+
 }

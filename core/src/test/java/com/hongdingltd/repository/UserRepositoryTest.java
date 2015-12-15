@@ -47,6 +47,10 @@ public class UserRepositoryTest {
     public void teardown() {
     }
 
+    private void hr() {
+        System.out.println("---------------------------------------------------------------");
+    }
+
     @Test
     public void saveUser() {
         long count = userRepository.count();
@@ -54,11 +58,19 @@ public class UserRepositoryTest {
         user.setUsername("kitty");
         userRepository.save(user);
         assertEquals(userRepository.count(), count+1);
-        user.setEnabled(true);
-        userRepository.save(user);
+
+        System.out.println(user);
+//        user.setEnabled(true);
+//        userRepository.save(user);
+
         User dbuser = userRepository.findByUsername("kitty");
-        assertTrue(dbuser.getEnabled());
+//        assertTrue(dbuser.getEnabled());
+
+        dbuser.setEnabled(true);
+        userRepository.save(dbuser);
+
         System.out.println(dbuser);
+        System.out.println(user);
     }
 
 
@@ -71,7 +83,7 @@ public class UserRepositoryTest {
         User dbUser = userRepository.save(user);
 
         System.out.println(authoritiesCount);
-        System.out.println(dbUser.getId() + " ; "+user.getId());
+        System.out.println(dbUser.getId() + " ; " + user.getId());
         System.out.println(authorityRepository.findAll());
 
         Authority authority = new Authority();
@@ -90,6 +102,7 @@ public class UserRepositoryTest {
         System.out.println(dbAuthority.getUser());
         assertNotNull(dbAuthority);
 
+
         // delete; orphanDelte=true
         userRepository.delete(user);
 //        authorityRepository.delete(dbAuthority);
@@ -103,31 +116,35 @@ public class UserRepositoryTest {
         long count = userProfileRepository.count();
 
         String username = "akka";
-        UserProfile userProfile = new UserProfile();
-        userProfile.setFullname("Hello Kitty");
-//        userProfile.setUsername(username);
-        userProfile.setGender(UserProfile.Gender.MALE);
-        userProfile.setAge(15);
-
         User user = new User();
         user.setUsername(username);
         user.setPassword("123456");
+//        userRepository.save(user);
 
+        UserProfile userProfile = new UserProfile();
+//        userProfile.setUid(123l);
+        userProfile.setFullname("Hello Kitty");
+        userProfile.setGender(UserProfile.Gender.MALE);
+        userProfile.setAge(15);
         userProfile.setUser(user);
+
+        hr();
+        System.out.println(userProfile);
         userProfileRepository.save(userProfile);
 
         assertEquals(userProfileRepository.count(), count+1);
-        System.out.println(userProfile.getUid());
+        hr();
+        System.out.println(userProfile.getUser());
 
-//        UserProfile dbUserProfile = userProfileRepository.findByUserUsername(username);
-//        System.out.println(dbUserProfile);
-//        System.out.println(dbUserProfile.getUser());
-//
-//        User dbUser = userRepository.findByUsername(username);
-//        System.out.println(dbUser);
-//        System.out.println(dbUser.getProfile());
-//
-//        assertEquals(dbUserProfile.getUser().getBid(), dbUser.getBid());
+        UserProfile dbUserProfile = userProfileRepository.findByUserId(userProfile.getUser().getId());
+        System.out.println(dbUserProfile);
+        System.out.println(dbUserProfile.getUser());
+
+        User dbUser = userRepository.findByUsername(username);
+        System.out.println(dbUser);
+        System.out.println(dbUser.getProfile());
+
+        assertEquals(dbUserProfile.getUser().getId(), dbUser.getId());
     }
 
     /*

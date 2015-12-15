@@ -16,7 +16,8 @@ public class UserProfile implements Serializable {
     }
 
     @Id
-    private Long uid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String fullname;
 
@@ -39,12 +40,12 @@ public class UserProfile implements Serializable {
     public UserProfile() {
     }
 
-    public Long getUid() {
-        return uid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUid(Long uid) {
-        this.uid = uid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullname() {
@@ -90,7 +91,6 @@ public class UserProfile implements Serializable {
     @Override
     public String toString() {
         return "UserProfile{" +
-                "uid=" + uid +
                 ", fullname='" + fullname + '\'' +
                 ", gender=" + gender +
                 ", age=" + age +

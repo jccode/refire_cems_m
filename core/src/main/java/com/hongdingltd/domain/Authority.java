@@ -70,6 +70,22 @@ public class Authority implements Serializable {
                 '}';
     }
 
+//    @Override
+//    public int hashCode() {
+//        return getId() != null ? getId().hashCode() : 0;
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if(this == o) return true;
+//        if(o == null || getClass() != o.getClass()) return false;
+//        Authority that = (Authority) o;
+//        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) {
+//            return false;
+//        }
+//        return true;
+//    }
+
     public static enum Role {
         USER, DRIVER, ADMIN
     }
